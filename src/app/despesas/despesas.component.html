@@ -1,0 +1,151 @@
+<div class="container">
+
+    <table width="100%">
+        <tr>
+            <td></td>
+            <td><h2>Despesas</h2></td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><button mat-flat-button color="primary" (click)="openDialog(null)">Cadastrar</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <mat-form-field>
+                <mat-label>Mês</mat-label>
+                    <mat-select [(value)]="mes">
+                        <mat-option value="01">Janeiro</mat-option>
+                        <mat-option value="02">Fevereiro</mat-option>
+                        <mat-option value="03">Março</mat-option>
+                        <mat-option value="04">Abril</mat-option>
+                        <mat-option value="05">Maio</mat-option>
+                        <mat-option value="06">Junho</mat-option>
+                        <mat-option value="07">Julho</mat-option>
+                        <mat-option value="08">Agosto</mat-option>
+                        <mat-option value="09">Setembro</mat-option>
+                        <mat-option value="10">Outubro</mat-option>
+                        <mat-option value="11">Novembro</mat-option>
+                        <mat-option value="12">Dezembro</mat-option>
+                    </mat-select>
+            </mat-form-field >
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field>
+                <mat-label>Ano</mat-label>
+                <mat-select [(value)]="ano">
+                    <mat-option value="1999">1999</mat-option>
+                    <mat-option value="2000">2000</mat-option>
+                    <mat-option value="2001">2001</mat-option>
+                    <mat-option value="2002">2002</mat-option>
+                    <mat-option value="2003">2003</mat-option>
+                    <mat-option value="2004">2004</mat-option>
+                    <mat-option value="2005">2005</mat-option>
+                    <mat-option value="2006">2006</mat-option>
+                    <mat-option value="2007">2007</mat-option>
+                    <mat-option value="2008">2008</mat-option>
+                    <mat-option value="2009">2009</mat-option>
+                    <mat-option value="2010">2010</mat-option>
+                    <mat-option value="2011">2011</mat-option>
+                    <mat-option value="2012">2012</mat-option>
+                    <mat-option value="2013">2013</mat-option>
+                    <mat-option value="2014">2014</mat-option>
+                    <mat-option value="2015">2015</mat-option>
+                    <mat-option value="2016">2016</mat-option>
+                    <mat-option value="2017">2017</mat-option>
+                    <mat-option value="2018">2018</mat-option>
+                    <mat-option value="2019">2019</mat-option>
+                    <mat-option value="2020">2020</mat-option>
+                    <mat-option value="2021">2021</mat-option>
+                    <mat-option value="2022">2022</mat-option>
+                    <mat-option value="2023">2023</mat-option>
+                    <mat-option value="2024">2024</mat-option>
+                    <mat-option value="2025">2025</mat-option>
+                </mat-select>
+            </mat-form-field >
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button mat-flat-button color="primary" (click)="listElements( ano, mes, getValue(desc.value))">Listar</button>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field appearance="fill">
+                <input matInput #desc placeholder="Entre com a string de busca" >
+            </mat-form-field>
+        </td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+      </table>
+
+
+
+    <table width="100%" mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="codigo">
+        <th width="7%" mat-header-cell *matHeaderCellDef> Código </th>
+        <td  mat-cell *matCellDef="let despesa"> {{despesa.codigo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo">
+        <th width="6%" mat-header-cell *matHeaderCellDef> Tipo </th>
+        <td  mat-cell *matCellDef="let despesa"> {{despesa.tipo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descricao">
+        <th width="20%" mat-header-cell *matHeaderCellDef> Descrição </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.descricao}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dataVencimento">
+        <th width="7%" mat-header-cell *matHeaderCellDef> Vencimento </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.dataVencimento | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dataPagamento">
+        <th width="7%" mat-header-cell *matHeaderCellDef> Pagamento </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.dataPagamento | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valor">
+        <th width="7%" mat-header-cell *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.valor | currency:'BRL'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valorPago">
+        <th width="7%" mat-header-cell *matHeaderCellDef> Valor pago </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.valorPago | currency:'BRL'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+        <th width="5%" mat-header-cell *matHeaderCellDef> Status </th>
+        <td  mat-cell *matCellDef="let despesa"> {{despesa.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="responsavel">
+        <th width="6%" mat-header-cell *matHeaderCellDef> Responsável </th>
+        <td  mat-cell *matCellDef="let despesa"> {{despesa.responsavel}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descricaoDetalhada">
+        <th width="20%" mat-header-cell *matHeaderCellDef> Descrição detalhada </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.descricaoDetalhada}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Ações </th>
+            <td mat-cell *matCellDef="let despesa">
+                <button mat-icon-button (click)="editElement(despesa)" color="primary">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button  mat-icon-button (click)="deleteElement(despesa.codigo)" color="primary">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+            </td>
+            </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let entry"
+            (click)="onRowClicked(row)" [ngClass]="{'valoresAPagar': entry.valorPago == 0}"></tr>
+    </table>
+</div>
+

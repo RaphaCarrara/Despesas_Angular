@@ -1,0 +1,87 @@
+<h1 *ngIf="!isChange" mat-dialog-title >Cadastra despesa</h1>
+<h1 *ngIf="isChange" mat-dialog-title >Edita despesa</h1>
+<div mat-dialog-content>
+
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Código</mat-label>
+        <input matInput [(ngModel)]="data.codigo">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Descrição</mat-label>
+        <input matInput [(ngModel)]="data.descricao">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Data vencimento</mat-label>
+        <input type="date" matInput [(ngModel)]="data.dataVencimento">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Data pagamento</mat-label>
+        <input type="date" matInput [(ngModel)]="data.dataPagamento">
+      </mat-form-field>
+    </td>
+</tr>
+<tr>
+  <td>
+    <mat-form-field appearance="fill">
+      <mat-label>Valor</mat-label>
+      <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ','}" matInput [(ngModel)]="data.valor">
+    </mat-form-field>
+  </td>
+  <td>
+    <mat-form-field appearance="fill">
+      <mat-label>Valor pago</mat-label>
+      <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ','}" matInput [(ngModel)]="data.valorPago">
+    </mat-form-field>
+  </td>
+</tr>
+<tr>
+  <td>
+    <mat-form-field appearance="fill">
+      <mat-label>Descrição detalhada</mat-label>
+      <textarea matInput [(ngModel)]="data.descricaoDetalhada"></textarea>
+    </mat-form-field>
+  </td>
+  <td>
+    <mat-form-field appearance="fill">
+      <mat-label>Responsável</mat-label>
+      <input matInput [(ngModel)]="data.responsavel">
+    </mat-form-field>
+  </td>
+</tr>
+<tr>
+  <td>
+    <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="data.tipo">
+      <mat-label>Tipo</mat-label><p><p>
+      <mat-radio-button value="Receita">Receita</mat-radio-button>
+      &nbsp;&nbsp;
+      <mat-radio-button value="Despesa">Despesa</mat-radio-button>
+    </mat-radio-group>
+  </td>
+</tr>
+<tr>
+  <td>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+  </td>
+
+</tr>
+
+</table>
+
+
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="onCancel()">Cancelar</button>
+  <button mat-flat-button color="primary" *ngIf="!isChange"  [mat-dialog-close]="data" cdkFocusInitial>Cadastrar</button>
+  <button mat-flat-button color="primary" *ngIf="isChange" [mat-dialog-close]="data" cdkFocusInitial>Editar</button>
+</div>
+

@@ -1,0 +1,17 @@
+
+
+class container {
+
+    border: 10px solid #dddddd;
+    text-align: right;
+    padding: 50px 80px;
+
+}
+
+mat-slider {
+    width: 300px;
+  }
+
+.valoresAPagar{
+  background-color: rgb(243, 178, 143);
+}
